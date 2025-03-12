@@ -80,7 +80,7 @@ By the end of this talk, you should be able to:
 ## Let's make it more concrete 
 
 - Cat Facts API: <https://catfact.ninja>
-- [API documentation for Cat Facts](https://catfact.ninja/docs/api-docs.json), 
+- [API documentation for Cat Facts](https://catfact.ninja/docs/), 
 - **Endpoints** are ways to communicate with the API
 
 ## What is an endpoint?
@@ -490,6 +490,17 @@ Catfact.ninja doesn't require any parameters. But what about an API that require
 
 We can pass parameters in using `req_url_query()`. This will add our parameter to the end of the URL.
 :::
+
+
+# Weather.gov example
+
+## Reading the Documentation
+
+- [Weather.gov API documentation page](https://www.weather.gov/documentation/services-web-api)
+
+## Building our query
+
+
 
 ## POST: when you need to provide more info to the API
 
