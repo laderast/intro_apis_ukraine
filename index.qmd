@@ -42,19 +42,6 @@ library(leaflet)
 library(plumber)
 ```
 
-## Posit Cloud Project
-
-::::{.columns}
-:::{.colkumn width="30%"}
-- [Posit Cloud Project](https://posit.cloud/content/5481225): <https://bit.ly/web_api_r> 
-- You will need a free posit.cloud project to clone it.
-:::
-
-:::{.column width="70%"}
-![](link.svg){width=450}
-:::
-::::
-
 ## Who this talk is for
 
 - Anyone who has heard the term "API" and ran away in fear
