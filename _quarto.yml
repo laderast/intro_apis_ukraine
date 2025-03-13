@@ -1,9 +1,9 @@
 project:
   title: "intro_apis_json_cascadia"
   output-dir: docs/
-#execute:
-#  freeze: true
-#  cache: true
+execute:
+  freeze: true
+  cache: true
 
 
 

@@ -50,6 +50,7 @@ library(jsonlite)
 library(tidyjson)
 library(leaflet)
 library(plumber)
+library(tidyverse)
 ```
 
 ## Who this talk is for
@@ -305,7 +306,7 @@ But we often want a `data.frame`!
 |----|------|
 |`[]`|Unnamed list (has numbered slots)|
 |`{}`|Named List (has named slots)|
-|key:value|`key=value`|
+|`key: value`|`key=value`|
 
 
 ## Example of JSON/R-List
