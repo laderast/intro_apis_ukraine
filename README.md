@@ -11,5 +11,5 @@
 ## Required Packages
 
 ```r
-install.packages(c("httr2", "jsonlite", "tidyjson", "leaflet", "plumber"))
+install.packages(c("httr2", "jsonlite", "tidyjson", "leaflet", "plumber", "tidyverse"))
 ```
