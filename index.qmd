@@ -407,6 +407,84 @@ newresp <- resp |>
 unlist(newresp)
 ```
 
+# Weather.gov example
+
+## Reading the Documentation
+
+- [Weather.gov API documentation page](https://www.weather.gov/documentation/services-web-api)
+- [Weather.gov API PDF](https://www.weather.gov/media/documentation/docs/NWS_Geolocation.pdf)
+
+## GET: Pass information in through the URL
+
+`https://api.weather.gov/stations?limit=10`
+
+```{r}
+httr2::request("https://api.weather.gov/stations") |>
+  httr2::req_url_query(limit=10) |>
+  httr2::req_dry_run()
+```
+## Building our query
+
+```{r}
+url <- "https://api.weather.gov/stations"
+
+resp <- httr2::request(url) |>
+  httr2::req_url_query(limit=10) |>
+  httr2::req_perform() 
+
+resp_json <- resp_body_json(resp)
+
+names(resp_json)
+
+resp_json$observationStations
+```
+
+```{r}
+library(tidyverse)
+stations <- unlist(resp_json$observationStations)
+
+stations
+```
+
+## Iterate over the stations
+
+Iterate over each station URL to get the coordinates:
+
+```{r}
+out_list <- purrr::map(stations, function(x){
+  httr2::request(x) |>
+  httr2::req_perform() |>
+  httr2::resp_body_json() |>
+  purrr::pluck("geometry") |>
+  purrr::pluck("coordinates")})
+
+out_list
+```
+
+## Finally, extract the coordinates
+
+```{r}    
+coords <- map_dfr(out_list, function(x){
+  tibble(
+  lon = x |> purrr::pluck(1),
+  lat = x |> purrr::pluck(2)
+  )
+  }) |>
+  mutate(id = stations)
+
+coords
+```
+
+## Plotting the Stations
+
+```{r}
+leaflet(coords) |>
+  addTiles() |>
+  addCircles()
+
+```
+
+
 # Other JSON formats
 
 ## Datasets that are Provided as JSON
@@ -490,15 +568,6 @@ Catfact.ninja doesn't require any parameters. But what about an API that require
 
 We can pass parameters in using `req_url_query()`. This will add our parameter to the end of the URL.
 :::
-
-
-# Weather.gov example
-
-## Reading the Documentation
-
-- [Weather.gov API documentation page](https://www.weather.gov/documentation/services-web-api)
-
-## Building our query
 
 
 
@@ -625,4 +694,4 @@ Check out the `{plumberDeploy}` package for more info.
 - <https://laderast.github.io>
 - [tladeras@vmst.io](https://vmst.io/@tladeras)
 - [Mailing List](https://buttondown.com/ready4r)
-- Repo for this talk: https://github.com/laderast/intro_apis_ukraine/
+- Repo for this talk: <https://github.com/laderast/intro_apis_ukraine/>
