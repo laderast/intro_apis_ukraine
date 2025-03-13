@@ -17,9 +17,19 @@ echo: true
 
 ## Introduction
 
+::::{.columns}
+:::{.column width="50%"}
 - [Ted Laderas, PhD](https://laderast.github.io/)
 - Director of Training and Community, Office of the Chief Data Officer, Fred Hutch Cancer Center
 - [I'm a Bioinformatics developer and educator in R and Python](https://hutchdatascience.org/)
+
+:::
+:::{.column width="50%"}
+![](LaderasTed-small.jpg)
+:::
+::::
+
+
 
 ## Details About the Workshop
 
@@ -287,6 +297,7 @@ But we often want a `data.frame`!
 
 - JSON gets translated to lists in R
 - You don't have to know JSON
+- `purrr::pluck()` is your friend to extract from lists
 
 ## JSON versus R-Lists
 
@@ -447,7 +458,8 @@ stations
 
 ## Iterate over the stations
 
-Iterate over each station URL to get the coordinates:
+- Iterate over each station URL to get the coordinates.
+- Slow down rate of requests using `req_throttle()`
 
 ```{r}
 out_list <- purrr::map(stations, function(x){
@@ -462,6 +474,9 @@ out_list
 ```
 
 ## Finally, extract the coordinates
+
+- The first coordinate is *longitude*
+- The second coordinate is *latitude*
 
 ```{r}    
 coords <- map_dfr(out_list, function(x){
