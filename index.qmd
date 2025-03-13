@@ -428,7 +428,7 @@ httr2::request("https://api.weather.gov/stations") |>
 url <- "https://api.weather.gov/stations"
 
 resp <- httr2::request(url) |>
-  httr2::req_url_query(limit=10) |>
+  httr2::req_url_query(limit=20) |>
   httr2::req_perform() 
 
 resp_json <- resp_body_json(resp)
@@ -452,6 +452,7 @@ Iterate over each station URL to get the coordinates:
 ```{r}
 out_list <- purrr::map(stations, function(x){
   httr2::request(x) |>
+  httr2::req_throttle(rate=10) |>
   httr2::req_perform() |>
   httr2::resp_body_json() |>
   purrr::pluck("geometry") |>
