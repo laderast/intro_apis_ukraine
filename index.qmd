@@ -56,7 +56,6 @@ By the end of this talk, you should be able to:
 - **Define** web APIs (Application Programming Interfaces) and how to interact with them
 - **Utilize** the `{httr2}` package to send requests and receive responses to an API
 - **Use** the `{jsonlite}` package to extract data frames
-- **Utilize** `{tidyjson}` to extract data from JSON files
 - **Describe** how to deploy an API using `{plumber}`
 
 :::
@@ -683,9 +682,7 @@ Check out the `{plumberDeploy}` package for more info.
 
 - **Define** web APIs (Application Programming Interfaces) and how to interact with them
 - **Utilize** the `{httr2}` package to send requests to an API
-- **Define** the basic elements of JSON 
 - **Use** the `{jsonlite}` to extract data frames
-- **Utilize** `{tidyjson}` to extract data from JSON files
 - **Describe** how to deploy an API using `{plumber}`
 
 # Thanks! Questions?
